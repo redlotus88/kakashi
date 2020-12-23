@@ -3,7 +3,7 @@ package com.c7n.kakashi;
 import javax.swing.*;
 
 /**
- * <功能描述>
+ * KakashiMain
  *
  * @author jialong.wang
  * @Date on 2020/12/23 11:00 AM

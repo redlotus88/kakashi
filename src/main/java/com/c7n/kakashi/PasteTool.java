@@ -13,7 +13,6 @@ import java.awt.datatransfer.Transferable;
  */
 public class PasteTool {
 
-
     /**
      * 将指定文本复制到剪贴板上
      *

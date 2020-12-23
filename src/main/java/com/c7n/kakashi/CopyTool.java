@@ -2,7 +2,6 @@ package com.c7n.kakashi;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
