@@ -1,3 +1,5 @@
+package com.c7n.kakashi;
+
 /**
  * <功能描述>
  *
