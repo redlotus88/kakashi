@@ -15,21 +15,24 @@ import redis.clients.jedis.Jedis;
  */
 public class ClipboardPublishTask extends Thread {
 
-    @SneakyThrows
     @Override
     public void run() {
         while (true) {
-            final String text = CopyTool.copyTextFromClipboard();
-            ClipboardText clipboardText = new ClipboardText(text);
-            if (KakashiCache.sync(clipboardText)) {
-                Gson gson = new Gson();
-                final String jsonString = gson.toJson(clipboardText);
-                final Jedis jedisConnection = JedisClient.getJedisResource();
-                System.out.println("发送消息, " + jsonString);
-                jedisConnection.set("kakashi_dragon", jsonString);
-                jedisConnection.publish(KakashiConstant.REDIS_PUB_CHANNEL, jsonString);
+            try {
+                final String text = CopyTool.copyTextFromClipboard();
+                ClipboardText clipboardText = new ClipboardText(text);
+                if (KakashiCache.sync(clipboardText)) {
+                    Gson gson = new Gson();
+                    final String jsonString = gson.toJson(clipboardText);
+                    final Jedis jedisConnection = JedisClient.getJedisResource();
+                    System.out.println("发送消息, " + jsonString);
+                    jedisConnection.set("kakashi_dragon", jsonString);
+                    jedisConnection.publish(KakashiConstant.REDIS_PUB_CHANNEL, jsonString);
+                }
+                Thread.sleep(1000L);
+            } catch (Exception e) {
+
             }
-            Thread.sleep(1000L);
         }
     }
 }
