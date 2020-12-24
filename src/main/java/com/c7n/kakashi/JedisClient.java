@@ -1,6 +1,8 @@
 package com.c7n.kakashi;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * 实例化Redis操作
@@ -11,12 +13,23 @@ import redis.clients.jedis.Jedis;
  */
 public class JedisClient {
 
-    public static Jedis jedis;
+    private static Jedis jedis;
 
-    public static Jedis getJedisConnection() {
-        if (jedis == null) {
-            jedis = new Jedis("127.0.0.1", 6379);
+    private static JedisPool jedisPool;
+
+    public static Jedis getJedisResource() {
+        if (jedisPool == null) {
+            jedisPool = newJedisPool();
         }
-        return jedis;
+        return jedisPool.getResource();
     }
+
+    public static JedisPool newJedisPool() {
+        JedisPoolConfig config = new JedisPoolConfig();
+        config.setMaxTotal(100);
+        config.setMaxIdle(5);
+        config.setMaxWaitMillis(1000);
+        return new JedisPool(config, "139.224.49.1", 6379, 180000, "q2u7LR$e", 0);
+    }
+
 }

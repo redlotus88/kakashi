@@ -18,7 +18,7 @@ public class JedisTest {
         final String TEST_KEY = "testJedis";
         final String TEST_VALUE = "123";
 
-        final Jedis jedisConnection = JedisClient.getJedisConnection();
+        final Jedis jedisConnection = JedisClient.getJedisResource();
         jedisConnection.set(TEST_KEY, TEST_VALUE);
         final String testJedis = jedisConnection.get(TEST_KEY);
 

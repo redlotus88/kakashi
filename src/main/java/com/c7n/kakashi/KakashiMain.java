@@ -1,6 +1,7 @@
 package com.c7n.kakashi;
 
-import javax.swing.*;
+import com.c7n.kakashi.task.ClipboardPublishTask;
+import com.c7n.kakashi.task.ClipboardSubscribeTask;
 
 /**
  * KakashiMain
@@ -13,8 +14,8 @@ public class KakashiMain {
 
     public static void main(String[] args) {
         System.out.println("测试主类");
-        JFrame jframe = SwingTool.createGUI();
-        SwingTool.addLabel(jframe, "Hello World");
-        System.out.println(CopyTool.copyTextFromClipboard());
+
+        new ClipboardPublishTask().start();
+        new ClipboardSubscribeTask().start();
     }
 }
