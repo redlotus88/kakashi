@@ -1,6 +1,5 @@
 package com.c7n.kakashi.model;
 
-import com.c7n.kakashi.KakashiUtils;
 import lombok.Data;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -16,11 +15,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class ClipboardText {
 
     private String text;
-    private String md5;
 
     public ClipboardText(String text) {
         this.text = text;
-        this.md5 = KakashiUtils.md5(text);
     }
 
     @Override
@@ -36,14 +33,14 @@ public class ClipboardText {
         ClipboardText that = (ClipboardText) o;
 
         return new EqualsBuilder()
-                .append(md5, that.md5)
+                .append(text, that.text)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(md5)
+                .append(text)
                 .toHashCode();
     }
 }

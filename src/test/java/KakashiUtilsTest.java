@@ -17,6 +17,8 @@ public class KakashiUtilsTest {
         String md5Test = KakashiUtils.md5("test123");
         System.out.println(md5Test);
         Assert.assertTrue(StringUtils.equals("cc03e747a6afbbcbf8be7668acfebee5", md5Test));
+
+        System.out.println("外触发点击操作");
     }
 
 }

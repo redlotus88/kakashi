@@ -12,14 +12,13 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class KakashiCache {
 
-    private static String currentClipboardTextMd5 = "";
+    private static int currentClipboardTextHashCode = 0;
 
     public static boolean sync(ClipboardText clipboardText) {
-        if (StringUtils.equals(currentClipboardTextMd5, clipboardText.getMd5())) {
+        if (currentClipboardTextHashCode == clipboardText.hashCode()) {
             return false;
         }
-
-        currentClipboardTextMd5 = clipboardText.getMd5();
+        currentClipboardTextHashCode = clipboardText.hashCode();
         return true;
     }
 }
