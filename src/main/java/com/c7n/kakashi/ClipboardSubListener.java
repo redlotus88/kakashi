@@ -20,7 +20,7 @@ public class ClipboardSubListener extends JedisPubSub {
             Gson gson = new Gson();
             final ClipboardText clipboardText = gson.fromJson(message, ClipboardText.class);
             if (KakashiCache.sync(clipboardText)) {
-                PasteTool.setClipboardString(message);
+                PasteTool.setClipboardString(clipboardText.getText());
             }
         } catch (Exception e) {
         }
